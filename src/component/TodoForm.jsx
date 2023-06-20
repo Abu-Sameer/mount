@@ -9,12 +9,16 @@ export default function TodoForm() {
 
   function onsubmit(e) {
     e.preventDefault();
-    dispatch(addTodo({ title: value }));
-    setValue('');
+    if (cansave) {
+      dispatch(addTodo({ title: value }));
+      setValue('');
+    }
   }
+
+  const cansave = [value].every(Boolean);
   return (
-    <form onSubmit={onsubmit} className="form-control my-4 w-50">
-      <h2 className="text-center mb-4">My Todo App</h2>
+    <form onSubmit={onsubmit} className="form-control w-50 my-4">
+      <h2 className="text-center mb-4">Task App</h2>
       <input
         type="text"
         className="form-control mb-2 me-ms-2"
@@ -22,7 +26,9 @@ export default function TodoForm() {
         value={value}
         onChange={(e) => setValue(e.target.value)}
       />
-      <button className="btn btn-primary">Submit</button>
+      <button disabled={!cansave} className="btn btn-primary">
+        Submit
+      </button>
     </form>
   );
 }

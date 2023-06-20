@@ -9,7 +9,9 @@ export default function TodoComplete() {
 
   return (
     <h4 className="mt-3">
-      Total Completed Items: {complete.length} out of {uncomplete.length}
+      {complete.length === uncomplete.length
+        ? 'All task completed...!'
+        : `Total complete task: ${complete.length} out of ${uncomplete.length}`}
     </h4>
   );
 }

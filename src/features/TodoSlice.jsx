@@ -4,8 +4,8 @@ const TodoSlices = createSlice({
   name: 'todo',
   initialState: [
     { id: nanoid(), title: 'Todo1', complete: false },
-    { id: nanoid(), title: 'Todo2', complete: false },
-    { id: nanoid(), title: 'Todo3', complete: true },
+    { id: nanoid(), title: 'Todo2', complete: true },
+    { id: nanoid(), title: 'Todo3', complete: false },
   ],
   reducers: {
     addTodo: (state, action) => {
@@ -23,8 +23,14 @@ const TodoSlices = createSlice({
       const index = state.findIndex((todo) => todo.id === action.payload.id);
       state[index].complete = action.payload.complete;
     },
+    updateTodo(state, action) {
+      const { id } = action.payload;
+      const todos = state.filter((todo) => todo.id !== id);
+      return [...todos, action.payload];
+    },
   },
 });
 
-export const { addTodo, removeTodo, toggleComplete } = TodoSlices.actions;
+export const { addTodo, removeTodo, toggleComplete, updateTodo } =
+  TodoSlices.actions;
 export default TodoSlices.reducer;

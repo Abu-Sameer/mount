@@ -1,14 +1,12 @@
 import React from 'react';
 import TodoForm from './component/TodoForm';
 import TodoList from './component/TodoList';
-import TodoComplete from './component/TodoComplete';
 
 export default function App() {
   return (
-    <div className="container">
+    <div className="container d-flex flex-column align-items-center">
       <TodoForm />
       <TodoList />
-      <TodoComplete />
     </div>
   );
 }
